@@ -1,6 +1,20 @@
+import { use } from 'react';
 import { NavLink } from 'react-router';
+import AuthContext from '../context/AuthContext';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
+  const { user, signoutUser } = use(AuthContext);
+  const handleSignOutUser = () => {
+    signoutUser()
+      .then(() => {
+        console.log('sign out successful');
+      })
+      .catch(() => {
+        console.log('sign out failed');
+      });
+  };
+
   const links = (
     <>
       <li>
@@ -43,16 +57,27 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <NavLink to="/" className="btn btn-ghost text-xl">
-            Job Portal
-          </NavLink>
+          <div className="flex items-center gap-1">
+            <img src={logo} className='w-8' alt="logo" />
+            <NavLink to="/" className="btn btn-ghost text-xl">
+              Job Portal
+            </NavLink>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end hidden lg:flex gap-2">
-          <NavLink to="/register">Register</NavLink>
-          <NavLink to="/signin">Signin</NavLink>
+          {user ? (
+            <>
+              <button onClick={handleSignOutUser}>Signout</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/signin">Signin</NavLink>
+            </>
+          )}
         </div>
       </div>
     </div>
