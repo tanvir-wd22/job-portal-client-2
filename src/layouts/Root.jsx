@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 const Root = () => {
   return (
     <div>
-      <section>
+      <section className="mb-8 lg:mb-16">
         <Navbar></Navbar>
       </section>
 

@@ -4,7 +4,7 @@ import { use } from 'react';
 import AuthContext from '../context/AuthContext';
 
 const Signin = () => {
-  const { signinUser } = use(AuthContext);
+  const { signinUser, googleSignin } = use(AuthContext);
 
   const handleSignInForm = (e) => {
     e.preventDefault();
@@ -21,12 +21,22 @@ const Signin = () => {
       });
   };
 
+  const handleGoogleSignin = () => {
+    googleSignin()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <div className="w-full sm:w-2/3">
+            <div className="w-full">
               <Lottie animationData={jsonData}></Lottie>
             </div>
           </div>
@@ -50,9 +60,15 @@ const Signin = () => {
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>
-                <button className="btn btn-neutral mt-4">Login</button>
+                <button className="btn btn-neutral mt-4">Sign In</button>
               </fieldset>
             </form>
+            <button
+              onClick={handleGoogleSignin}
+              className="btn btn-warning mb-8 mx-6"
+            >
+              Sign in with google
+            </button>
           </div>
         </div>
       </div>

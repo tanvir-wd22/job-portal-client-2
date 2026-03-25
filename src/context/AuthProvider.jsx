@@ -4,13 +4,22 @@ import auth from '../firebase/init.js';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  GoogleAuthProvider,
+  onAuthStateChanged,
 } from 'firebase/auth';
-import { onAuthStateChanged } from 'firebase/auth';
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const provider = new GoogleAuthProvider();
+
+  const googleSignin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, provider);
+  };
 
   const registerUser = (email, password) => {
     setLoading(true);
@@ -28,6 +37,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const authData = {
+    googleSignin,
     registerUser,
     signinUser,
     signoutUser,
