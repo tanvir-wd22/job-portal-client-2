@@ -15,7 +15,7 @@ const HotJobs = () => {
     <div>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {jobs.map((jobItem) => (
-          <JobCard jobItem={jobItem}></JobCard>
+          <JobCard jobItem={jobItem} key={jobItem._id}></JobCard>
         ))}
       </div>
     </div>

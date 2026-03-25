@@ -2,9 +2,14 @@ import Lottie from 'lottie-react';
 import jsonData from '../assets/signin.json';
 import { use } from 'react';
 import AuthContext from '../context/AuthContext';
+import { useLocation, useNavigate } from 'react-router';
 
 const Signin = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { signinUser, googleSignin } = use(AuthContext);
+
+  const from = location?.state || '/';
 
   const handleSignInForm = (e) => {
     e.preventDefault();
@@ -15,6 +20,7 @@ const Signin = () => {
     signinUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate(from);
       })
       .catch((error) => {
         console.log(error.message);
