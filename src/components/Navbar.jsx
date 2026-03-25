@@ -5,6 +5,7 @@ import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const { user, signoutUser } = use(AuthContext);
+
   const handleSignOutUser = () => {
     signoutUser()
       .then(() => {
@@ -58,9 +59,9 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-1">
-            <img src={logo} className='w-8' alt="logo" />
+            <img src={logo} className="w-8" alt="logo" />
             <NavLink to="/" className="btn btn-ghost text-xl">
-              Job Portal
+              It Job Portal
             </NavLink>
           </div>
         </div>
