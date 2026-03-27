@@ -7,7 +7,8 @@ import JobCardDetail from '../components/JobCardDetail';
 import PrivateRouter from './PrivateRouter';
 import JobApply from '../components/JobApply';
 import UsersApplications from '../pages/UsersApplications';
-import AdminJobs from '../pages/AdminJobs';
+import AdminJobForm from '../pages/AdminJobForm';
+import AdminPostedJobs from '../pages/AdminPostedJobs';
 
 let PublicRouter = createBrowserRouter([
   {
@@ -45,10 +46,18 @@ let PublicRouter = createBrowserRouter([
         ),
       },
       {
-        path: '/adminJobs',
+        path: '/adminJobForm',
         element: (
           <PrivateRouter>
-            <AdminJobs></AdminJobs>
+            <AdminJobForm></AdminJobForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: '/adminPostedJobs',
+        element: (
+          <PrivateRouter>
+            <AdminPostedJobs></AdminPostedJobs>
           </PrivateRouter>
         ),
       },

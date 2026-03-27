@@ -2,7 +2,7 @@ import { use } from 'react';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
-const AdminJobs = () => {
+const AdminJobForm = () => {
   const { user } = use(AuthContext);
 
   const handleFormSubmit = (e) => {
@@ -196,4 +196,4 @@ const AdminJobs = () => {
   );
 };
 
-export default AdminJobs;
+export default AdminJobForm;
