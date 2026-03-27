@@ -1,5 +1,6 @@
 import { use } from 'react';
 import AuthContext from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const AdminJobs = () => {
   const { user } = use(AuthContext);
@@ -21,6 +22,22 @@ const AdminJobs = () => {
     newJob.responsibilities = newJob.responsibilities.split('\n');
     newJob.requirements = newJob.requirements.split('\n');
     console.log(newJob);
+
+    // send job data to server
+    fetch(`http://localhost:5000/jobs`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire('new job created successfully');
+        }
+      });
   };
 
   return (
