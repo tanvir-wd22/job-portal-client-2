@@ -12,7 +12,7 @@ const UsersApplications = () => {
   }, [user?.email]);
 
   return (
-    <div>
+    <div className="mb-8 lg:mb-16">
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
